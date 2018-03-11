@@ -1,1 +1,21 @@
+#root {
+    max-width: 700px;
+    margin: 0 auto;
+}
 
+.App-Header,
+.LoadData {
+    margin: 10px;
+}
+
+
+.maxfile {
+    border: 2px solid black;
+    margin: 10px;
+}
+
+.file-name,
+.maxfile p,
+.plugins {
+    margin-left: 5px;
+}
