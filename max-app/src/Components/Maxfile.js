@@ -3,7 +3,6 @@ import React from 'react';
 class Maxfile extends React.Component {
     render () {
         const { name, desc, plugins, saves } = this.props.details;
-        const fm8true = plugins.fm8
         return (
             <div className="maxfile">
                 <h3 className="file-name">{name}</h3>
