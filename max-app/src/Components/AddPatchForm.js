@@ -30,11 +30,11 @@ class AddPatchForm extends React.Component {
     render() {
         return (
             <form className="patch-edit" onSubmit={this.createPatch}>
-                <input name="name" ref={this.nameRef} type="text" placeholder="Patch name..." />            
-                <textarea name="desc" ref={this.descRef} placeholder="Description..."></textarea>           
-                <input name="plugins" ref={this.pluginsRef} type="text" placeholder="Plugins used..." />            
+                <input name="name" ref={this.nameRef} type="text" placeholder="Patch name" />            
+                <input name="desc" ref={this.descRef} placeholder="Description" />          
+                <input name="plugins" ref={this.pluginsRef} type="text" placeholder="Plugins used" />            
                 <input name="saves" ref={this.savesRef} type="text" placeholder="Saves" />
-                <button type="submit">Add Patch</button>
+                <button type="submit">Save Patch</button>
             </form>
         )
     }

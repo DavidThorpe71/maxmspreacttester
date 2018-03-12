@@ -9,7 +9,8 @@ import base from '../base';
 
 class App extends Component {
   state = {
-    maxfiles: {}
+    maxfiles: {},
+    showAddForm: false
   };
 
   componentDidMount() {
@@ -37,6 +38,10 @@ class App extends Component {
     this.setState({ maxfiles });
   }
 
+  showForm = () => {
+    this.setState({ showAddForm: !this.state.showAddForm })
+  }
+
   loadSampleData = () => {
     this.setState({ maxfiles: sampleData });
   };
@@ -45,17 +50,21 @@ class App extends Component {
     return (
       <div className="Max-App">
         <Header />
-        <LoadData loadSampleData={this.loadSampleData} />
-        <AddPatchForm addPatch={this.addPatch} />
-        {Object.keys(this.state.maxfiles).map(key => (
-          <EditMaxFile 
-            key={key}
-            index={key}
-            details={this.state.maxfiles[key]}
-            updatePatch={this.updatePatch}
-            />
-
-        ))}
+        <div className="container">
+          <LoadData loadSampleData={this.loadSampleData} />
+          <button onClick={this.showForm}>{this.state.showAddForm ? 'Hide' : 'Add Patch'}</button>
+          {this.state.showAddForm && <AddPatchForm addPatch={this.addPatch} />}
+          <div className="file-container">
+            {Object.keys(this.state.maxfiles).map(key => (
+              <EditMaxFile 
+                key={key}
+                index={key}
+                details={this.state.maxfiles[key]}
+                updatePatch={this.updatePatch}
+                />
+            ))}
+          </div>
+        </div>
       </div>
     );
   }
