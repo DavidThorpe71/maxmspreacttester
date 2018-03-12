@@ -2,10 +2,7 @@ const maxfiles = {
     patch1: {
         name: "New Synth",
         desc: "Brand new synthesizer patch",
-        plugins: {
-            fm8: true,
-            battery: false
-        },
+        plugins: "fm8, Battery",
         created: "01/02/2017",
         saves: {
             save1: {
@@ -25,10 +22,7 @@ const maxfiles = {
     patch2: {
         name: "Seq10",
         desc: "Funny Sequencer",
-        plugins: {
-            fm8: false,
-            battery: false
-        },
+        plugins: "None",
         created: "11/12/2016",
         saves: {
             save1: {
@@ -48,10 +42,7 @@ const maxfiles = {
     patch3: {
         name: "MF inspired 1",
         desc: "synth and drums",
-        plugins: {
-            fm8: true,
-            battery: true
-        },
+        plugins: "fm8, Battery",
         created: "05/06/2017",
         saves: {
             save1: {
@@ -71,10 +62,7 @@ const maxfiles = {
     patch4: {
         name: "Riser 1a",
         desc: "Synth tone rising",
-        plugins: {
-            fm8: true,
-            battery: false
-        },
+        plugins: "fm8",
         created: "16/12/2017",
         saves: {
             save1: {
