@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 
 class AddPatchForm extends React.Component {
     nameRef = React.createRef();
@@ -9,8 +10,9 @@ class AddPatchForm extends React.Component {
 
     createPatch = (e) => {
         e.preventDefault();
+        
         const patch = {
-            created: Date.now(),
+            created: moment().format('MMMM Do YYYY, HH:mm:ss'),
             name: this.nameRef.value.value,
             desc: this.descRef.value.value,
             plugins: {
@@ -19,7 +21,7 @@ class AddPatchForm extends React.Component {
             },
             saves: {
                 save1: {
-                    date: Date.now(),
+                    date: moment().format('MMMM Do YYYY, HH:mm:ss'),
                     text: this.savesRef.value.value
                 }
             }
@@ -33,10 +35,12 @@ class AddPatchForm extends React.Component {
             <form className="patch-edit" onSubmit={this.createPatch}>
                 <input name="name" ref={this.nameRef} type="text" placeholder="Name" />            
                 <textarea name="desc" ref={this.descRef} placeholder="Desc"></textarea>           
-                <input id="fm8tick" ref={this.fm8Ref} name="fm8" type="checkbox" />
-                <label for="fm8tick">FM8</label>
-                <input id="batterytick" ref={this.batteryRef} name="battery" type="checkbox" />
-                <label for="batterytick">Battery</label>  
+                <div className="plugins">
+                    <input id="fm8tick" ref={this.fm8Ref} name="fm8" type="checkbox" />
+                    <label for="fm8tick">FM8</label>
+                    <input id="batterytick" ref={this.batteryRef} name="battery" type="checkbox" />
+                    <label for="batterytick">Battery</label>
+                </div>
                 <input name="saves" ref={this.savesRef} type="text" placeholder="Saves" />
                 <button type="submit">Add Patch</button>
             </form>

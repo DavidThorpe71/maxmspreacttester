@@ -1,4 +1,5 @@
 import React from 'react';
+import Saves from './Saves';
 
 class Maxfile extends React.Component {
     render () {
@@ -7,7 +8,14 @@ class Maxfile extends React.Component {
             <div className="maxfile">
                 <h3 className="file-name">{name}</h3>
                 <p>{desc}</p>
-                <h4 className="plugins">VSTs: {plugins.fm8 && plugins.battery ? 'FM8, Battery' :  plugins.fm8 ? 'FM8' : plugins.battery ? 'Battery' : 'None'}</h4>
+                <p className="plugins"><strong>VSTs:</strong> {plugins.fm8 && plugins.battery ? 'FM8, Battery' :  plugins.fm8 ? 'FM8' : plugins.battery ? 'Battery' : 'None'}</p>
+                <h4 className="savesTitle">Previous versions:</h4>
+                {Object.keys(saves).map(key => (
+                    <Saves 
+                        key={key}
+                        details={saves[key]}
+                    />
+                ))}
             </div>
         )
     }

@@ -9,13 +9,34 @@
 }
 
 
-.maxfile {
-    border: 2px solid black;
+.maxfile,
+form {
+    border: 1px solid black;
     margin: 10px;
 }
 
 .file-name,
 .maxfile p,
-.plugins {
+.plugins,
+.savesTitle {
     margin-left: 5px;
 }
+
+.file-name {
+    margin: 0;
+    padding: 10px;
+    color: white;
+    background-color: dodgerblue;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form 
+    input, 
+    textarea, 
+    button {
+        margin: 5px;
+    }

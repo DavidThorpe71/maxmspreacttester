@@ -9,15 +9,15 @@ const maxfiles = {
         created: "01/02/2017",
         saves: {
             save1: {
-                text: "wghgjtrhtrnym",
+                text: "wghggrgerhhym",
                 date: "16:23 01/02/2017"
             },
             save2: {
-                text: "wghgjtrhtrnym",
+                text: "4667773trnym",
                 date: "19:10 01/02/2017"
             },
             save3: {
-                text: "wghgjtrhtrnym",
+                text: "737756ujutyjm",
                 date: "20:23 01/02/2017"
             }
         }
@@ -32,15 +32,15 @@ const maxfiles = {
         created: "11/12/2016",
         saves: {
             save1: {
-                text: "wghgjtrhtrnym",
+                text: "ytjetjrhjytjm",
                 date: "12:32 11/12/2016"
             },
             save2: {
-                text: "wghgjtrhtrnym",
+                text: "yyyyuyjjteeem",
                 date: "12:56 11/12/2016"
             },
             save3: {
-                text: "wghgjtrhtrnym",
+                text: "jytjhgdhghsqwqym",
                 date: "13:34 11/12/2016"
             }
         }
