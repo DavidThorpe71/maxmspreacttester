@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import './App.css';
-import Maxfile from './Components/Maxfile';
-import LoadData from './Components/LoadData';
-import sampleData from './sample-data';
-import AddPatchForm from './Components/AddPatchForm';
+import '../App.css';
+import Header from './Header';
+import Maxfile from './Maxfile';
+import LoadData from './LoadData';
+import sampleData from '../sample-data';
+import AddPatchForm from './AddPatchForm';
 
 class App extends Component {
   state = {
@@ -25,9 +26,7 @@ class App extends Component {
   render() {
     return (
       <div className="Max-App">
-        <header className="App-Header">
-          <h1 className="Title">Max MSP Version control App</h1>
-        </header>
+        <Header />
         <LoadData loadSampleData={this.loadSampleData} />
         <AddPatchForm />
         {Object.keys(this.state.maxfiles).map(key => (
