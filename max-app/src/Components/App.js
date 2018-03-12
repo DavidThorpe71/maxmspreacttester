@@ -12,7 +12,7 @@ class App extends Component {
   };
 
   addPatch = (patch) => {
-    const maxfiles = {...this.state.maxfiles};
+    const maxfiles = { ...this.state.maxfiles };
     maxfiles[`patch${Date.now()}`] = patch;
     this.setState({
       maxfiles
@@ -28,7 +28,7 @@ class App extends Component {
       <div className="Max-App">
         <Header />
         <LoadData loadSampleData={this.loadSampleData} />
-        <AddPatchForm />
+        <AddPatchForm addPatch={this.addPatch} />
         {Object.keys(this.state.maxfiles).map(key => (
           <Maxfile 
             key={key}
