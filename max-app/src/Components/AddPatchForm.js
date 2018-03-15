@@ -23,8 +23,9 @@ class AddPatchForm extends React.Component {
                 }
             }
         }
-        console.log(this.fm8Ref);
         this.props.addPatch(patch);
+        e.currentTarget.reset();
+        this.props.showForm();
     }
     
     render() {

@@ -14,7 +14,7 @@ class EditMaxfile extends React.Component {
         const { name, desc, plugins, saves } = this.props.details;
         return (
             <form className="max-edit">
-                <input name="name" onChange={this.handleChange} type="text" value={name} />            
+                <input name="name" onChange={this.handleChange} type="text" value={name} />           
                 <input name="desc" onChange={this.handleChange} value={desc} />         
                 <input name="plugins" onChange={this.handleChange} type="text" value={plugins} />
                 <Saves details={saves} />
