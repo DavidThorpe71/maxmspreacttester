@@ -5,7 +5,7 @@ import { firebaseApp } from '../base';
 import { slugify } from '../helpers';
 
 class FrontPage extends React.Component {
-    goToUser = async (authData) => {
+    authHandler = async (authData) => {
         const userId = slugify(authData.user.displayName);
         this.props.history.push(`/user/${userId}`);
       };
@@ -19,7 +19,7 @@ class FrontPage extends React.Component {
         return (
             <div className="entry">
                 <h2>Welcome to Max Version Control!</h2>
-                <button onClick={this.goToUser}>Enter Here!</button>
+                <button onClick={this.authenticate}>Enter Here!</button>
             </div>
           );
     }

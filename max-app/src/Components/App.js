@@ -15,7 +15,8 @@ class App extends Component {
     maxfiles: {},
     uid: null,
     owner: null,
-    showAddForm: false
+    showAddForm: false,
+    isAuthenticated: false
   };
 
   componentDidMount() {
@@ -53,20 +54,20 @@ class App extends Component {
   };
 
   authHandler = async (authData) => {
-    // const userId = slugify(authData.user.displayName);
-    // this.props.history.push(`/user/${userId}`);
-    const userId = this.props.match.params.userId
-    const user = await base.fetch(userId, { context: this });
-    console.log(user);
-    if(!user.owner) {
-      await base.post(`${userId}/owner`, {
-        data: authData.user.uid
-      })
-      this.setState({
-        uid: authData.user.uid,
-        owner: user.owner || authData.user.uid
-      })
-    }
+    const userId = slugify(authData.user.displayName);
+    this.props.history.push(`/user/${userId}`);
+    // const userId = this.props.match.params.userId
+    // const user = await base.fetch(userId, { context: this });
+    // console.log(user);
+    // if(!user.owner) {
+    //   await base.post(`${userId}/owner`, {
+    //     data: authData.user.uid
+    //   })
+    //   this.setState({
+    //     uid: authData.user.uid,
+    //     owner: user.owner || authData.user.uid
+    //   })
+    // }
   };
 
   authenticate = (provider) => {
@@ -76,11 +77,10 @@ class App extends Component {
 
 
   render() {
-    if (!this.state.uid) {
-      return (
-        <Login authenticate={this.authenticate} />
-      );
-    }
+    // return (
+    //   <Login authenticate={this.authenticate}/>
+    // )
+
     return (
       <div className="Max-App">
         <Header />
