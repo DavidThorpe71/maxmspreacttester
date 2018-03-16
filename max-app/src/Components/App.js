@@ -20,11 +20,16 @@ class App extends Component {
   };
 
   componentDidMount() {
-    const { params } = this.props.match;
-    this.ref = base.syncState(`${params.userId}/maxfiles`, {
-      context: this,
-      state: 'maxfiles',
-    });
+    // const { params } = this.props.match;
+    // this.ref = base.syncState(`${params.userId}/maxfiles`, {
+    //   context: this,
+    //   state: 'maxfiles',
+    // });
+    firebase.auth().onAuthStateChanged(user => {
+      if(user) {
+        this.authHandler({ user });
+      }
+    })
   }
 
   componentWillUnmount() {
@@ -56,18 +61,22 @@ class App extends Component {
   authHandler = async (authData) => {
     const userId = slugify(authData.user.displayName);
     this.props.history.push(`/user/${userId}`);
-    // const userId = this.props.match.params.userId
-    // const user = await base.fetch(userId, { context: this });
-    // console.log(user);
-    // if(!user.owner) {
-    //   await base.post(`${userId}/owner`, {
-    //     data: authData.user.uid
-    //   })
-    //   this.setState({
-    //     uid: authData.user.uid,
-    //     owner: user.owner || authData.user.uid
-    //   })
-    // }
+    const user = await base.fetch(this.props.match.params.userId, { context: this });
+    if (!user.owner) {
+      await base.post(`${this.props.match.params.userId}/owner`, {
+        data: authData.user.uid,
+      })
+    }
+    this.setState({
+      isAuthenticated: true,
+      uid: authData.user.uid,
+      owner: user.owner || authData.user.uid
+    });
+    const { params } = this.props.match;
+    this.ref = base.syncState(`${params.userId}/maxfiles`, {
+      context: this,
+      state: 'maxfiles',
+    });
   };
 
   authenticate = (provider) => {
@@ -75,15 +84,38 @@ class App extends Component {
     firebaseApp.auth().signInWithPopup(authProvider).then(this.authHandler);
   };
 
+  logout = async () => {
+    console.log('Logging out!');
+    await firebase.auth().signOut();
+    this.setState({
+      uid: null
+    });
+    this.props.history.push("/");
+  }
 
   render() {
-    // return (
-    //   <Login authenticate={this.authenticate}/>
-    // )
+    const logout = <button onClick={this.logout}>Logout</button>
+
+
+    if (!this.state.uid) {
+      return (
+        <Login authenticate={this.authenticate}/>
+      )
+    }
+
+    if (this.state.uid !== this.state.owner) {
+      return (
+        <div>
+          <p>Sorry you are not the owner!</p>
+        </div>
+    // ***Do something here if user is logged in but the owner of the maxfiles***
+      )
+    }
 
     return (
       <div className="Max-App">
         <Header />
+        {logout}
         <div className="container">
           <h1 className="name">{this.props.match.params.userId}'s Max Files</h1>
           <LoadData loadSampleData={this.loadSampleData} />
