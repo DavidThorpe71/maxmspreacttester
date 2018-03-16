@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 import '../App.css';
-import Header from './Header';
-import EditMaxFile from './EditMaxFile';
-import LoadData from './LoadData';
 import sampleData from '../sample-data';
-import AddPatchForm from './AddPatchForm';
 import Login from './Login';
 import base, { firebaseApp } from '../base';
 import { slugify } from '../helpers';
+import UserPage from './UserPage';
 
 class App extends Component {
   state = {
@@ -54,6 +51,7 @@ class App extends Component {
   };
 
   authHandler = async (authData) => {
+    console.log(authData);
     const userId = slugify(authData.user.displayName);
     this.props.history.push(`/user/${userId}`);
     // const userId = this.props.match.params.userId
@@ -77,31 +75,22 @@ class App extends Component {
 
 
   render() {
-    // return (
-    //   <Login authenticate={this.authenticate}/>
-    // )
+    if (!this.state.isAuthenticated) {
+      return (
+        <Login authenticate={this.authenticate}/>
+      )
+    }
 
     return (
-      <div className="Max-App">
-        <Header />
-        <div className="container">
-          <h1 className="name">{this.props.match.params.userId}'s Max Files</h1>
-          <LoadData loadSampleData={this.loadSampleData} />
-          <button onClick={this.showForm}>{this.state.showAddForm ? 'Hide' : 'Add Patch'}</button>
-          {this.state.showAddForm && <AddPatchForm addPatch={this.addPatch} showForm={this.showForm} />}
-          <div className="file-container">
-            {Object.keys(this.state.maxfiles).map(key => (
-              <EditMaxFile 
-                key={key}
-                index={key}
-                details={this.state.maxfiles[key]}
-                updatePatch={this.updatePatch}
-                />
-            ))}
-          </div>
-        </div>
-      </div>
-    );
+      <UserPage 
+        loadSampleData={this.loadSampleData}
+        showForm={this.showForm}
+        showAddForm={this.state.showAddForm}
+        addPatch={this.addPatch}
+        maxFiles={this.state.maxfiles}
+        updatePatch={this.updatePatch}
+      />
+    )
   }
 }
 
